@@ -6,10 +6,12 @@ class Categories(models.Model):
 
     def __str__(self):
         return self.name
+    def __int__(self):
+        return self.id
 
     class Meta:
         verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name_plural = 'Категории!'
 
 class Brands(models.Model):
     id = models.AutoField('id', primary_key=True )
@@ -28,6 +30,7 @@ class Type(models.Model):
 
     def __str__(self):
         return self.name
+
 
     class Meta:
         verbose_name = 'Тип товара'

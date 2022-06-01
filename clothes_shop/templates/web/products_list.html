@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <title>Catalog</title>
+
+    <link rel="stylesheet" href="{% static 'css/reset.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+
+    <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/regular.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    {% include 'web/header.html' %}
+    <main class="page">
+        <section class="page-main__catalog _container ">
+            <form action="{% url 'filter' %}" method="get" class="filter__main">
+                <div class="filter__block">
+
+                    <div class="price__block">
+                        <p class="price-block__title _filter__title">
+                            Price
+                        </p>
+                        <div class="price__input">
+                            <input type="text" placeholder="from" class="price__input-main">
+                            <input type="text" placeholder="to" class="price__input-main">
+                        </div>
+                    </div>
+                    <div class="brands__block">
+                        <p class="brands__block_title _filter__title">
+                            Brands
+                        </p>
+                        <div class="brands__checkbox">
+                            {% for brand in view.get_by_brands %}
+                            <div class="item__checkbox">
+                                <input type="checkbox" class="custom-checkbox" id="{{ brand.name }}"
+                                       name="brand" value="{{ brand.id }}">
+                                <label for="{{ brand.name }}">{{ brand.name }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="type-product__block">
+                        <p class="type-product__title _filter__title">
+                            Type of product
+                        </p>
+
+                        <div class="type-product_radiobutton">
+                            {% for type in view.get_by_type %}
+                            <div class="type__item">
+                                <input type="radio" class="custom-radio" id="{{ type.name }}" name="type"
+                                       value="{{ type.id }}">
+                                <label for="{{ type.name }}">{{ type.name }}</label>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <div class="size__block">
+                        <p class="size__title _filter__title">
+                            Size
+                        </p>
+                        <div class="size__checkbox">
+                            {% for size in view.get_by_size %}
+                            <div class="item__checkbox">
+                                <input type="checkbox" class="custom-checkbox" id="{{ size.name }}"
+                                       name="size" value="{{ size.id }}">
+                                <label for="{{ size.name }}">{{ size.name }}</label>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+                <button type="submit" class="find__filter">
+                    FIND
+                </button>
+            </form>
+
+            <div class="main-catalog__lists __container">
+                {% for item in products_list %}
+                <a href="{% url 'view_detail_product' item.id %}">
+                    <div class="main-catalog__list">
+                        <img src="{{ item.img.url }}" alt="" class="product__img">
+                        <div class="product__title">
+                            {{ item.title }}
+                        </div>
+                        <div class="product__price">
+                            ${{ item.price }}
+                        </div>
+                        <div class="product__buy">
+                            <button class="buy_now">
+                                BUY
+                            </button>
+                        </div>
+                    </div>
+                </a>
+
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

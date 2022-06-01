@@ -2,58 +2,76 @@
 <header>
     <div class="header__container _container">
         <div class="header__logo">
-            <a href="" class="logo__link">
-                Jesco
+            <a href="{% url 'home' %}" class="logo__link">
+                Jesco.
             </a>
         </div>
-        <div class="header__menu menu">
-            <ul class="menu__list">
-                <li class="menu__item">
-                    <a href="{% url 'catalog' %}" class="menu__link">
-                        Men's
-                    </a>
-                </li>
-                <li class="menu__item">
-                    <a href="{% url 'catalog' %}" class="menu__link">
-                        Women's
-                    </a>
-                </li>
-                <li class="menu__item">
-                    <a href="{% url 'catalog' %}" class="menu__link">
-                        Kid's
-                    </a>
-                </li>
-                <li class="menu__item">
-                    <a href="{% url 'catalog' %}" class="menu__link">
-                        Collections
-                    </a>
-                </li>
-                <li class="menu__item">
-                    <a href="{% url 'catalog' %}" class="menu__link">
-                        Contacts
-                    </a>
-                </li>
-            </ul>
+        <div class="header__menu_main">
+            <nav class="header__menu menu">
+                <ul class="menu__list ">
+                    <li class="main__block menu__item">
+                        <a href="{% url 'catalog' %}" class="menu__link">
+                            Catalog
+                        </a>
+                        <div id="myDropdown" class="dropdown-content">
+                           <a href="{% url 'catalog_men' %}" class=" menu__link ">
+                               Men's
+                           </a>
+                           <a href="{% url 'catalog_womens' %}" class=" menu__link ">
+                               Women's
+                           </a>
+                            <a href="{% url 'catalog_kids' %}" class=" menu__link ">
+                                Kid's
+                            </a>
+                      </div>
+                    </li>
+                    <li class="main-item__block menu__item">
+                        <a href="{% url 'catalog_men' %}" class="menu__link ">
+                            Men's
+                        </a>
+                    </li>
+                    <li class=" main-item__block menu__item">
+                        <a href="{% url 'catalog_womens' %}" class=" menu__link ">
+                            Women's
+                        </a>
+                    </li>
+                    <li class="main-item__block menu__item">
+                        <a href="{% url 'catalog_kids' %}" class=" menu__link ">
+                            Kid's
+                        </a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="{% url 'catalog' %}" class="menu__link ">
+                            Collections
+                        </a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="{% url 'catalog' %}" class="menu__link">
+                            Contacts
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__burger">
+                    <span></span>
+            </div>
         </div>
 
-        <div class="header__icon">
+        <div class="header__icon header-active mobile_size">
             <div class="main-icon ">
-                <a href="" class="icon__link">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
 
-             </div>
-            <div class="main-icon">
-                <a href="" class="icon__link">
-                    <i class="fa-solid fa-heart"></i>
-                </a>
+                <div class="icon__wrapper">
 
-            </div>
-            <div class="main-icon">
-                <a href="" class="icon__link">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                    <form>
+                        <input type="text" class="input" >
+                    </form>
+                    <div class="icon__link">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>
